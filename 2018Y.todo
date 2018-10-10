@@ -1,0 +1,36 @@
+10.09
+☐ 物理模块浅析（原理分析） @started(18-10-09 17:16) 
+本质上都是在编辑器里给UStaticMeshComponent构建一个UBodySetup,在开始游戏的时候在创建运行时的基本物理数据UBodyInstance。
+UBodySetup与UBodyInstance：我个人理解UBodySetup就是一个静态的物理数据，一般在在游戏运行前就已经构建好了[当然，你在游戏运行时创建也没什么问题]。你可以理解为一个类，编译以后就存在了。
+而UBodyInstance是一个在游戏时真正起作用的物理数据，可以理解为通过这个类创建的对象，运行时才真正出现。通过一个UBodySetup是可以创建出多个UBodyInstance的
+而对于骨骼网格物体SkeletalMesh，由于数据比较多，他的物理数据存储在PhysicsAsset里面。在游戏运行的时候，
+SkeletalMeshComponent会读取物理资产里面的数据UBodySetup随后再通过UBodySetup给角色创建对应的基本物理数据UBodyInstance。
+再进一步深入就是NVIDA的PhysX物理引擎了
+./Mesh Component与物理基本类的基本关系.jpg
+ollisionResponses，ObejctType这些其实都是FBodyInstance里面的成员，
+我们在编辑器里面设置的这些属性其实就是在给BodyInstance设置
+（进一步还会去给到PhysX里面的PxRigidActor，后面讲）。
+
+☐ ue4动画蒙太奇设置与播放
+
+
+Archive:
+  ✔ 安装vscode插件（git blame Git Blame Document this） @done(18-10-09 10:02)
+  ✔ git本地库（两层库） @done(18-10-09 16:35)（子分支和分支操作相同）
+
+  10.10
+  ✔ C++load蓝图UI并使用以及打包 @done(18-10-10 20:30)
+      UPROPERTY()//需要将蓝图里的同名同类型变量的 is Variable选项取消 
+      让其不成为变量资产
+  ✔ C++构造函数是否继承 @done(18-10-10 20:13)
+      构造函数不能继承，如果子类不显式调用父类的构造函数，
+      编译器会自动调用父类的【无参构造函数】；
+  ✔ 析构函数是否继承 @done(18-10-10 20:18)
+      不能被继承
+  ☐ DOSP UI框架
+  ✘ 遥感手柄输入适配 @cancelled(18-10-10 20:03)
+  ☐ FirstPersonDemo 整理
+
+ 10.11
+ ☐ TheEdge UI框架图
+ ☐ 边缘deadline
